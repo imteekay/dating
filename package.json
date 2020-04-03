@@ -1,11 +1,28 @@
 {
   "name": "dating",
   "version": "1.0.0",
-  "description": "dating with dates",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "Dating with dates",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^13.11.0",
+    "nodemon": "^2.0.2",
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.8.1",
+    "typescript": "^3.8.3"
   },
-  "author": "",
-  "license": "MIT"
+  "scripts": {
+    "start:dev": "nodemon",
+    "build": "rimraf ./build && tsc",
+    "start": "npm run build && node build/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leandrotk/dating.git"
+  },
+  "author": "TK",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leandrotk/dating/issues"
+  },
+  "homepage": "https://github.com/leandrotk/dating#readme"
 }
