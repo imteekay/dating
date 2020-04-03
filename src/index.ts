@@ -54,6 +54,10 @@ const beginningOfYear = (): Date => {
 };
 
 const get = (n: number): DateAgo | DatesAgo => {
+  if (n < 1) {
+    throw new Error('Number should be greater or equal than 1');
+  }
+
   const { day, month, year }: SeparatedDate = getSeparatedDate();
 
   const dayAgo: Date = new Date(year, month, day - n);
