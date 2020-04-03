@@ -4,8 +4,10 @@ type SeparatedDate = {
   year: number
 };
 
-type DaysAgo = {
+type DateAgo = {
   daysAgo: Date
+  monthsAgo: Date
+  yearsAgo: Date
 };
 
 const getSeparatedDate = (): SeparatedDate => {
@@ -39,11 +41,15 @@ const beginningOfYear = (): Date => {
   return new Date(year, 0, 1);
 };
 
-const get = (n: number): DaysAgo => {
+const get = (n: number): DateAgo => {
   const { day, month, year }: SeparatedDate = getSeparatedDate();
   const daysAgo: Date = new Date(year, month, day - n);
+  const monthsAgo: Date = new Date(year, month - n, day);
+  const yearsAgo: Date = new Date(year - n, month, day);
 
   return {
-    daysAgo
+    daysAgo,
+    monthsAgo,
+    yearsAgo
   };
 };
