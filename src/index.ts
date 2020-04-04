@@ -22,8 +22,7 @@ type DatesAgo = {
   yearAgo?: undefined
 };
 
-const getSeparatedDate = (): SeparatedDate => {
-  const now: Date = new Date();
+const getSeparatedDate = (now: Date = new Date()): SeparatedDate => {
   const day: number = now.getDate();
   const month: number = now.getMonth();
   const year: number = now.getFullYear();
@@ -33,6 +32,18 @@ const getSeparatedDate = (): SeparatedDate => {
     month,
     year
   };
+};
+
+const today = (): Date => {
+  const { day, month, year }: SeparatedDate = getSeparatedDate();
+
+  return new Date(year, month, day);
+};
+
+const yesterday = (): Date => {
+  const { day, month, year }: SeparatedDate = getSeparatedDate();
+
+  return new Date(year, month, day - 1);
 };
 
 const beginningOfDay = (): Date => {
@@ -51,6 +62,24 @@ const beginningOfYear = (): Date => {
   const { year }: SeparatedDate = getSeparatedDate();
 
   return new Date(year, 0, 1);
+};
+
+const day = (date: Date): number => {
+  const { day }: SeparatedDate = getSeparatedDate(date);
+
+  return day;
+};
+
+const month = (date: Date): number => {
+  const { month }: SeparatedDate = getSeparatedDate(date);
+
+  return month;
+};
+
+const year = (date: Date): number => {
+  const { year }: SeparatedDate = getSeparatedDate(date);
+
+  return year;
 };
 
 const get = (n: number): DateAgo | DatesAgo => {
