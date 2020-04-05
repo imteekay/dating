@@ -1,10 +1,10 @@
-type SeparatedDate = {
+export type SeparatedDate = {
   day: number
   month: number
   year: number
 };
 
-type DateAgo = {
+export type DateAgo = {
   dayAgo: Date
   monthAgo: Date
   yearAgo: Date
@@ -13,7 +13,7 @@ type DateAgo = {
   yearsAgo?: undefined
 };
 
-type DatesAgo = {
+export type DatesAgo = {
   daysAgo: Date
   monthsAgo: Date
   yearsAgo: Date
@@ -22,7 +22,7 @@ type DatesAgo = {
   yearAgo?: undefined
 };
 
-const getSeparatedDate = (now: Date = new Date()): SeparatedDate => {
+export const getSeparatedDate = (now: Date = new Date()): SeparatedDate => {
   const day: number = now.getDate();
   const month: number = now.getMonth();
   const year: number = now.getFullYear();
@@ -34,55 +34,55 @@ const getSeparatedDate = (now: Date = new Date()): SeparatedDate => {
   };
 };
 
-const today = (): Date => {
+export const today = (): Date => {
   const { day, month, year }: SeparatedDate = getSeparatedDate();
 
   return new Date(year, month, day);
 };
 
-const yesterday = (): Date => {
+export const yesterday = (): Date => {
   const { day, month, year }: SeparatedDate = getSeparatedDate();
 
   return new Date(year, month, day - 1);
 };
 
-const beginningOfDay = (): Date => {
+export const beginningOfDay = (): Date => {
   const { day, month, year }: SeparatedDate = getSeparatedDate();
 
   return new Date(year, month, day);
 };
 
-const beginningOfMonth = (): Date => {
+export const beginningOfMonth = (): Date => {
   const { month, year }: SeparatedDate = getSeparatedDate();
 
   return new Date(year, month, 1);
 };
 
-const beginningOfYear = (): Date => {
+export const beginningOfYear = (): Date => {
   const { year }: SeparatedDate = getSeparatedDate();
 
   return new Date(year, 0, 1);
 };
 
-const day = (date: Date): number => {
+export const day = (date: Date): number => {
   const { day }: SeparatedDate = getSeparatedDate(date);
 
   return day;
 };
 
-const month = (date: Date): number => {
+export const month = (date: Date): number => {
   const { month }: SeparatedDate = getSeparatedDate(date);
 
   return month;
 };
 
-const year = (date: Date): number => {
+export const year = (date: Date): number => {
   const { year }: SeparatedDate = getSeparatedDate(date);
 
   return year;
 };
 
-const get = (n: number): DateAgo | DatesAgo => {
+export const get = (n: number): DateAgo | DatesAgo => {
   if (n < 1) {
     throw new Error('Number should be greater or equal than 1');
   }
