@@ -8,18 +8,18 @@ export type DateAgo = {
   dayAgo: Date
   monthAgo: Date
   yearAgo: Date
-  daysAgo?: undefined
-  monthsAgo?: undefined
-  yearsAgo?: undefined
+  daysAgo?: never
+  monthsAgo?: never
+  yearsAgo?: never
 };
 
 export type DatesAgo = {
   daysAgo: Date
   monthsAgo: Date
   yearsAgo: Date
-  dayAgo?: undefined
-  monthAgo?: undefined
-  yearAgo?: undefined
+  dayAgo?: never
+  monthAgo?: never
+  yearAgo?: never
 };
 
 export const getSeparatedDate = (now: Date = new Date()): SeparatedDate => {
@@ -27,11 +27,7 @@ export const getSeparatedDate = (now: Date = new Date()): SeparatedDate => {
   const month: number = now.getMonth();
   const year: number = now.getFullYear();
 
-  return {
-    day,
-    month,
-    year
-  };
+  return { day, month, year };
 };
 
 export const today = (): Date => {
@@ -46,41 +42,29 @@ export const yesterday = (): Date => {
   return new Date(year, month, day - 1);
 };
 
-export const beginningOfDay = (): Date => {
-  const { day, month, year }: SeparatedDate = getSeparatedDate();
+export const beginningOfDay = (date: Date = new Date()): Date => {
+  const { day, month, year }: SeparatedDate = getSeparatedDate(date);
 
   return new Date(year, month, day);
 };
 
-export const beginningOfMonth = (): Date => {
-  const { month, year }: SeparatedDate = getSeparatedDate();
+export const beginningOfMonth = (date: Date = new Date()): Date => {
+  const { month, year }: SeparatedDate = getSeparatedDate(date);
 
   return new Date(year, month, 1);
 };
 
-export const beginningOfYear = (): Date => {
-  const { year }: SeparatedDate = getSeparatedDate();
+export const beginningOfYear = (date: Date = new Date()): Date => {
+  const { year }: SeparatedDate = getSeparatedDate(date);
 
   return new Date(year, 0, 1);
 };
 
-export const day = (date: Date): number => {
-  const { day }: SeparatedDate = getSeparatedDate(date);
+export const day = (date: Date): number => date.getDate();
 
-  return day;
-};
+export const month = (date: Date): number => date.getMonth();
 
-export const month = (date: Date): number => {
-  const { month }: SeparatedDate = getSeparatedDate(date);
-
-  return month;
-};
-
-export const year = (date: Date): number => {
-  const { year }: SeparatedDate = getSeparatedDate(date);
-
-  return year;
-};
+export const year = (date: Date): number => date.getFullYear();
 
 export const get = (n: number): DateAgo | DatesAgo => {
   if (n < 1) {
@@ -98,16 +82,8 @@ export const get = (n: number): DateAgo | DatesAgo => {
   const yearsAgo: Date = new Date(year - n, month, day);
 
   if (n > 1) {
-    return {
-      daysAgo,
-      monthsAgo,
-      yearsAgo
-    };
+    return { daysAgo, monthsAgo, yearsAgo };
   };
 
-  return {
-    dayAgo,
-    monthAgo,
-    yearAgo
-  }
+  return { dayAgo, monthAgo, yearAgo }
 };
